@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
+import { Container, Button } from "semantic-ui-react";
 import { AccountTable } from "../../features/accounts/accountTable/AccountTable";
 import { Navbar } from "../../features/nav/NavBar";
 import { AddTransactionModal } from "../../features/transactions/addTransactionModal/AddTransactionModal";
@@ -127,13 +127,16 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <Navbar onAddTransactionClicked={this.openModal} />
 
-        <Container style={{ marginTop: "7em" }}>
-          <TransactionTable
-            data={dummyData.transactions}
-            onAddTransactionClicked={this.openModal}
-          />
+        <Container
+          style={{
+            marginTop: "7em",
+            padding: "2em",
+            backgroundColor: "white",
+          }}
+        >
+          <TransactionTable data={dummyData.transactions} />
 
           <AddTransactionModal
             opened={this.state.modalOpened}

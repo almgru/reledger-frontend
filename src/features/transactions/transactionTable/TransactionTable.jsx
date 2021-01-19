@@ -8,14 +8,6 @@ export const TransactionTable = (props) => (
         <Table.HeaderCell colSpan={4}>
           <Header size="medium" textAlign="center">
             Transactions
-            <Button
-              style={{ position: "absolute", right: 10 }}
-              compact
-              color="green"
-              onClick={props.onAddTransactionClicked}
-            >
-              Add New Transaction
-            </Button>
           </Header>
         </Table.HeaderCell>
       </Table.Row>

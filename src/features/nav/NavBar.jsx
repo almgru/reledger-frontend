@@ -1,7 +1,7 @@
 import React from "react";
-import { Menu, Container, Icon } from "semantic-ui-react";
+import { Menu, Container, Icon, Button } from "semantic-ui-react";
 
-export const Navbar = () => (
+export const Navbar = (props) => (
   <Menu inverted fixed="top" color="blue">
     <Container>
       <Menu.Item header>
@@ -10,6 +10,11 @@ export const Navbar = () => (
       </Menu.Item>
       <Menu.Item name="Accounts" />
       <Menu.Item name="Transactions" />
+      <Menu.Item position="right">
+        <Button positive onClick={props.onAddTransactionClicked}>
+          Add New Transaction
+        </Button>
+      </Menu.Item>
     </Container>
   </Menu>
 );
