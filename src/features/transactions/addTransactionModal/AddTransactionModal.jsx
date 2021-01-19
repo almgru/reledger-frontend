@@ -1,6 +1,6 @@
 import React from "react";
 import SemanticDatepicker from "react-semantic-ui-datepickers";
-import { Modal, Form, Button, Icon } from "semantic-ui-react";
+import { Modal, Form, Button } from "semantic-ui-react";
 
 export class AddTransactionModal extends React.Component {
   constructor() {

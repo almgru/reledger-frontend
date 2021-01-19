@@ -12,7 +12,14 @@ export const Navbar = (props) => (
       <Menu.Item as={NavLink} to="/accounts" name="Accounts" />
       <Menu.Item as={NavLink} to="/transactions" name="Transactions" />
       <Menu.Item position="right">
-        <Button positive onClick={props.onAddTransactionClicked}>
+        <Button positive onClick={props.onAddAccountClicked}>
+          Add New Account
+        </Button>
+        <Button
+          positive
+          onClick={props.onAddTransactionClicked}
+          style={{ marginLeft: "0.5em" }}
+        >
           Add New Transaction
         </Button>
       </Menu.Item>

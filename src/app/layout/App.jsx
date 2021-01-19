@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import { AccountTable } from "../../features/accounts/accountTable/AccountTable";
 import { Navbar } from "../../features/nav/NavBar";
+import { AddAccountModal } from "../../features/transactions/addAccountModal/AddAccountModal";
 import { AddTransactionModal } from "../../features/transactions/addTransactionModal/AddTransactionModal";
 import { TransactionTable } from "../../features/transactions/transactionTable/TransactionTable";
 
@@ -12,11 +13,19 @@ export default class App extends React.Component {
     this.state = {
       accounts: [],
       transactions: [],
-      modalOpened: false,
+      addTransactionModalOpened: false,
+      addAccountModalOpened: false,
     };
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.onModalSubmit = this.onModalSubmit.bind(this);
+    this.openAddTransactionModal = this.openAddTransactionModal.bind(this);
+    this.closeAddTransactionModal = this.closeAddTransactionModal.bind(this);
+    this.onAddTransactionModalSubmitted = this.onAddAccountModalSubmitted.bind(
+      this
+    );
+    this.openAddAccountModal = this.openAddAccountModal.bind(this);
+    this.closeAddAccountModal = this.closeAddAccountModal.bind(this);
+    this.onAddAccountModalSubmitted = this.onAddAccountModalSubmitted.bind(
+      this
+    );
   }
 
   componentDidMount = () => {
@@ -28,24 +37,37 @@ export default class App extends React.Component {
       .then((data) => this.setState({ transactions: data }));
   };
 
-  openModal() {
-    this.setState({ modalOpened: true });
+  openAddTransactionModal() {
+    this.setState({ addTransactionModalOpened: true });
   }
 
-  closeModal() {
-    this.setState({ modalOpened: false });
+  openAddAccountModal() {
+    this.setState({ addAccountModalOpened: true });
   }
 
-  onModalSubmit(submitEvent) {
-    console.log("modal submitted:");
-    console.log(submitEvent);
-    this.closeModal();
+  closeAddTransactionModal() {
+    this.setState({ addTransactionModalOpened: false });
+  }
+
+  closeAddAccountModal() {
+    this.setState({ addAccountModalOpened: false });
+  }
+
+  onAddTransactionModalSubmitted(submitEvent) {
+    this.closeAddAccountModal();
+  }
+
+  onAddAccountModalSubmitted(submitEvent) {
+    this.closeAddTransactionModal();
   }
 
   render() {
     return (
       <>
-        <Navbar onAddTransactionClicked={this.openModal} />
+        <Navbar
+          onAddTransactionClicked={this.openAddTransactionModal}
+          onAddAccountClicked={this.openAddAccountModal}
+        />
 
         <Container
           style={{
@@ -66,10 +88,17 @@ export default class App extends React.Component {
             <Redirect from="/" to="/transactions" />
           </Switch>
 
+          <AddAccountModal
+            opened={this.state.addAccountModalOpened}
+            onModalSubmitClicked={this.onAddAccountModalSubmitted}
+            onModalClosed={this.closeAddAccountModal}
+            accounts={this.state.accounts}
+          />
+
           <AddTransactionModal
-            opened={this.state.modalOpened}
-            onModalSubmitClicked={this.onModalSubmit}
-            onModalClosed={this.closeModal}
+            opened={this.state.addTransactionModalOpened}
+            onModalSubmitClicked={this.onAddTransactionModalSubmitted}
+            onModalClosed={this.closeAddTransactionModal}
             accounts={this.state.accounts}
           />
         </Container>
