@@ -22,11 +22,11 @@ export const TransactionTable = (props) => (
     <Table.Body>
       {props.data.map((transaction) => (
         <Table.Row key={transaction.id}>
-          <Table.Cell>{transaction.from}</Table.Cell>
+          <Table.Cell>{transaction.fromAccount.name}</Table.Cell>
           <Table.Cell>
             {transaction.amount} {transaction.currency}
           </Table.Cell>
-          <Table.Cell>{transaction.to}</Table.Cell>
+          <Table.Cell>{transaction.toAccount.name}</Table.Cell>
           <Table.Cell>{transaction.date}</Table.Cell>
         </Table.Row>
       ))}
