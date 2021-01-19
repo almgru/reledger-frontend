@@ -63,7 +63,7 @@ export default class App extends React.Component {
               <AccountTable data={this.state.accounts} />
             </Route>
 
-            <Redirect from="/" exact to="/transactions" />
+            <Redirect from="/" to="/transactions" />
           </Switch>
 
           <AddTransactionModal
