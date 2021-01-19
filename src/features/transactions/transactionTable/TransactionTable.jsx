@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button, Header } from "semantic-ui-react";
+import { Table, Header } from "semantic-ui-react";
 
 export const TransactionTable = (props) => (
   <Table celled>
