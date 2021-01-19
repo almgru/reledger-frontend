@@ -1,10 +1,24 @@
 import React from "react";
-import { Table } from "semantic-ui-react";
+import { Table, Button, Header } from "semantic-ui-react";
 
 export default function TransactionTable(props) {
   return (
     <Table celled>
       <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell colSpan={4}>
+            <Header size="medium" textAlign="center">
+              Transactions
+              <Button
+                style={{ position: "absolute", right: 10 }}
+                compact
+                color="green"
+              >
+                Add New Transaction
+              </Button>
+            </Header>
+          </Table.HeaderCell>
+        </Table.Row>
         <Table.Row>
           <Table.HeaderCell>From</Table.HeaderCell>
           <Table.HeaderCell>Amount</Table.HeaderCell>
