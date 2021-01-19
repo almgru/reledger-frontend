@@ -1,7 +1,7 @@
 import React from "react";
-import AccountTable from "../../features/accounts/accountTable/AccountTable";
-import AddTransactionModal from "../../features/transactions/addTransactionModal/AddTransactionModal";
-import TransactionTable from "../../features/transactions/transactionTable/TransactionTable";
+import { AccountTable } from "../../features/accounts/accountTable/AccountTable";
+import { AddTransactionModal } from "../../features/transactions/addTransactionModal/AddTransactionModal";
+import { TransactionTable } from "../../features/transactions/transactionTable/TransactionTable";
 
 const dummyData = {
   transactions: [
