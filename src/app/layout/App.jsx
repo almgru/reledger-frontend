@@ -126,7 +126,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <>
         <Navbar onAddTransactionClicked={this.openModal} />
 
         <Container
@@ -146,7 +146,7 @@ export default class App extends React.Component {
 
           <AccountTable data={dummyData.accounts} />
         </Container>
-      </div>
+      </>
     );
   }
 }
