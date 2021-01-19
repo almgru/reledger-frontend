@@ -1,3 +1,5 @@
+import React from "react";
+import AddTransactionModal from "../../features/transactions/addTransactionModal/AddTransactionModal";
 import TransactionTable from "../../features/transactions/transactionTable/TransactionTable";
 
 const dummyData = [
@@ -27,14 +29,46 @@ const dummyData = [
   },
 ];
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Reledger</h1>
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      modalOpened: false,
+    };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.onModalSubmit = this.onModalSubmit.bind(this);
+  }
 
-      <TransactionTable data={dummyData} />
-    </div>
-  );
+  openModal() {
+    this.setState({ modalOpened: true });
+  }
+
+  closeModal() {
+    this.setState({ modalOpened: false });
+  }
+
+  onModalSubmit(submitEvent) {
+    console.log("modal submitted:");
+    console.log(submitEvent);
+    this.closeModal();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Reledger</h1>
+
+        <TransactionTable
+          data={dummyData}
+          onAddTransactionClicked={this.openModal}
+        />
+        <AddTransactionModal
+          opened={this.state.modalOpened}
+          onModalSubmitClicked={this.onModalSubmit}
+          onModalClosed={this.closeModal}
+        />
+      </div>
+    );
+  }
 }
-
-export default App;

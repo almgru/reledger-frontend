@@ -13,6 +13,7 @@ export default function TransactionTable(props) {
                 style={{ position: "absolute", right: 10 }}
                 compact
                 color="green"
+                onClick={props.onAddTransactionClicked}
               >
                 Add New Transaction
               </Button>
