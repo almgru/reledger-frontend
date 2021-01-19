@@ -70,6 +70,7 @@ export default class App extends React.Component {
             opened={this.state.modalOpened}
             onModalSubmitClicked={this.onModalSubmit}
             onModalClosed={this.closeModal}
+            accounts={this.state.accounts}
           />
         </Container>
       </>
