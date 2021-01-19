@@ -8,11 +8,11 @@ export const AddTransactionModal = (props) => (
       <Form.Input label="From account" required type="text" />
     </Modal.Content>
     <Modal.Actions>
-      <Button type="submit" color="green">
-        Submit
-      </Button>
-      <Button color="red" onClick={props.onModalClosed}>
+      <Button negative onClick={props.onModalClosed}>
         Discard
+      </Button>
+      <Button positive type="submit">
+        Submit
       </Button>
     </Modal.Actions>
   </Modal>
