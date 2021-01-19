@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import { AccountTable } from "../../features/accounts/accountTable/AccountTable";
 import { Navbar } from "../../features/nav/NavBar";
@@ -54,17 +54,15 @@ export default class App extends React.Component {
             backgroundColor: "white",
           }}
         >
-          <Switch>
-            <Route path="/transactions">
-              <TransactionTable data={this.state.transactions} />
-            </Route>
+          <Route path="/transactions" exact>
+            <TransactionTable data={this.state.transactions} />
+          </Route>
 
-            <Route path="/accounts">
-              <AccountTable data={this.state.accounts} />
-            </Route>
+          <Route path="/accounts" exact>
+            <AccountTable data={this.state.accounts} />
+          </Route>
 
-            <Redirect from="/" exact to="/transactions" />
-          </Switch>
+          <Redirect from="/" to="/transactions" exact />
 
           <AddTransactionModal
             opened={this.state.modalOpened}
