@@ -35,6 +35,7 @@ export class AddAccountModal extends React.Component {
             type="text"
             required
             onChange={(e) => this.setName(e.target.value)}
+            placeholder="e.g: Expense.Utility.Electricity"
           ></Form.Input>
           <Form.Group inline>
             <label>Increase Behavior</label>
