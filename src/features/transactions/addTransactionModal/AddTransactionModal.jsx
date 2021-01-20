@@ -81,7 +81,7 @@ export class AddTransactionModal extends React.Component {
                 text: account.name,
                 value: account.id,
               }))}
-              onChange={(_, v) => this.setCreditAccountId(v.value)}
+              onChange={(_, v) => this.setDebitAccountId(v.value)}
             ></Form.Select>
           </Form.Group>
           <Form.Group widths="equal">

@@ -26,16 +26,26 @@ export default class App extends React.Component {
     this.onAddAccountModalSubmitted = this.onAddAccountModalSubmitted.bind(
       this
     );
+    this.updateAccountData = this.updateAccountData.bind(this);
+    this.updateTransactionData = this.updateTransactionData.bind(this);
   }
 
   componentDidMount = () => {
+    this.updateAccountData();
+    this.updateTransactionData();
+  };
+
+  updateAccountData() {
     fetch("http://localhost:5000/api/accounts")
       .then((response) => response.json())
       .then((data) => this.setState({ accounts: data }));
+  }
+
+  updateTransactionData() {
     fetch("http://localhost:5000/api/transactions")
       .then((response) => response.json())
       .then((data) => this.setState({ transactions: data }));
-  };
+  }
 
   openAddTransactionModal() {
     this.setState({ addTransactionModalOpened: true });
@@ -54,20 +64,47 @@ export default class App extends React.Component {
   }
 
   onAddTransactionModalSubmitted(credits, debits, amount, date, description) {
-    console.log("transaction submitted");
-    console.log(credits);
-    console.log(debits);
-    console.log(amount);
-    console.log(date);
-    console.log(description);
-    this.closeAddAccountModal();
+    const creditAccountName = this.state.accounts.find(
+      (account) => account.id === credits
+    ).name;
+    const debitAccountName = this.state.accounts.find(
+      (account) => account.id === debits
+    ).name;
+
+    fetch("http://localhost:5000/api/transactions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        fromAccount: creditAccountName,
+        toAccount: debitAccountName,
+        amount: amount,
+        currency: "SEK",
+        date: date.toISOString(),
+        description: description,
+      }),
+    })
+      .then(() => this.updateTransactionData())
+      .then(() => this.updateAccountData())
+      .then(() => this.closeAddTransactionModal())
+      .catch((error) => console.log(error));
   }
 
   onAddAccountModalSubmitted(name, incBehavior) {
-    console.log("account submitted");
-    console.log(name);
-    console.log(incBehavior);
-    this.closeAddTransactionModal();
+    fetch("http://localhost:5000/api/accounts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        name: name,
+        increaseBalanceOn: incBehavior,
+      }),
+    })
+      .then(() => this.updateAccountData())
+      .then(() => this.closeAddAccountModal())
+      .catch((error) => console.log(error));
   }
 
   render() {
