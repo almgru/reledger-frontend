@@ -18,7 +18,7 @@ export default class App extends React.Component {
     };
     this.openAddTransactionModal = this.openAddTransactionModal.bind(this);
     this.closeAddTransactionModal = this.closeAddTransactionModal.bind(this);
-    this.onAddTransactionModalSubmitted = this.onAddAccountModalSubmitted.bind(
+    this.onAddTransactionModalSubmitted = this.onAddTransactionModalSubmitted.bind(
       this
     );
     this.openAddAccountModal = this.openAddAccountModal.bind(this);
@@ -53,11 +53,20 @@ export default class App extends React.Component {
     this.setState({ addAccountModalOpened: false });
   }
 
-  onAddTransactionModalSubmitted(submitEvent) {
+  onAddTransactionModalSubmitted(credits, debits, amount, date, description) {
+    console.log("transaction submitted");
+    console.log(credits);
+    console.log(debits);
+    console.log(amount);
+    console.log(date);
+    console.log(description);
     this.closeAddAccountModal();
   }
 
-  onAddAccountModalSubmitted(submitEvent) {
+  onAddAccountModalSubmitted(name, incBehavior) {
+    console.log("account submitted");
+    console.log(name);
+    console.log(incBehavior);
     this.closeAddTransactionModal();
   }
 
@@ -90,14 +99,14 @@ export default class App extends React.Component {
 
           <AddAccountModal
             opened={this.state.addAccountModalOpened}
-            onModalSubmitClicked={this.onAddAccountModalSubmitted}
+            onSubmit={this.onAddAccountModalSubmitted}
             onModalClosed={this.closeAddAccountModal}
             accounts={this.state.accounts}
           />
 
           <AddTransactionModal
             opened={this.state.addTransactionModalOpened}
-            onModalSubmitClicked={this.onAddTransactionModalSubmitted}
+            onSubmit={this.onAddTransactionModalSubmitted}
             onModalClosed={this.closeAddTransactionModal}
             accounts={this.state.accounts}
           />

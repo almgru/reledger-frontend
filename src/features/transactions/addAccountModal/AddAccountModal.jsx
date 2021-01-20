@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Button, Label } from "semantic-ui-react";
+import { Modal, Form, Button } from "semantic-ui-react";
 
 export class AddAccountModal extends React.Component {
   constructor() {
@@ -21,10 +21,21 @@ export class AddAccountModal extends React.Component {
 
   render() {
     return (
-      <Modal open={this.props.opened} as={Form} onSubmit={this.props.onSubmit}>
+      <Modal
+        open={this.props.opened}
+        as={Form}
+        onSubmit={() =>
+          this.props.onSubmit(this.state.name, this.state.increaseBehavior)
+        }
+      >
         <Modal.Header></Modal.Header>
         <Modal.Content>
-          <Form.Input label="Name" type="text" required></Form.Input>
+          <Form.Input
+            label="Name"
+            type="text"
+            required
+            onChange={(e) => this.setName(e.target.value)}
+          ></Form.Input>
           <Form.Group inline>
             <label>Increase Behavior</label>
             <Form.Radio
