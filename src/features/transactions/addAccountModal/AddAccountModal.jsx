@@ -24,9 +24,10 @@ export class AddAccountModal extends React.Component {
       <Modal
         open={this.props.opened}
         as={Form}
-        onSubmit={() =>
-          this.props.onSubmit(this.state.name, this.state.increaseBehavior)
-        }
+        onSubmit={() => {
+          this.props.onSubmit(this.state.name, this.state.increaseBehavior);
+          this.props.onModalClosed();
+        }}
       >
         <Modal.Header></Modal.Header>
         <Modal.Content>

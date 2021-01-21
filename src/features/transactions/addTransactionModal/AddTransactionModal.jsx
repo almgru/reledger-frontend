@@ -44,15 +44,16 @@ export class AddTransactionModal extends React.Component {
       <Modal
         open={this.props.opened}
         as={Form}
-        onSubmit={() =>
+        onSubmit={() => {
           this.props.onSubmit(
             this.state.creditAccountId,
             this.state.debitAccountId,
             this.state.amount,
             this.state.date,
             this.state.description
-          )
-        }
+          );
+          this.props.onModalClosed();
+        }}
       >
         <Modal.Header></Modal.Header>
         <Modal.Content>
