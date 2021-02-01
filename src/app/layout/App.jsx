@@ -37,7 +37,6 @@ export default class App extends React.Component {
       }),
     })
       .then(this.updateAccountData)
-      .then(() => this.closeAddAccountModal())
       .catch((error) => console.log(error));
   }
 
