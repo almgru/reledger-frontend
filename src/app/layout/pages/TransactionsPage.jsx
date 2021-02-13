@@ -84,7 +84,7 @@ export class TransactionsPage extends React.Component {
   }
 
   _updateTransactionData() {
-    fetch("http://reledger-api/api/transactions")
+    fetch(`http://${window.location.hostname}:5000/api/transactions`)
       .then((response) => response.json())
       .then((data) => this.setState({ transactions: data }));
   }
