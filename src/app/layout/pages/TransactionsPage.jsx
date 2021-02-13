@@ -40,7 +40,7 @@ export class TransactionsPage extends React.Component {
       (account) => account.id === debits
     ).name;
 
-    fetch("http://reledger-api/api/transactions", {
+    fetch(`http://${window.location.hostname}:5000/api/transactions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
