@@ -11,10 +11,6 @@ export const Navbar = (props) => (
       </Menu.Item>
       <Menu.Item as={NavLink} to="/accounts" name="Accounts" />
       <Menu.Item as={NavLink} to="/transactions" name="Transactions" />
-      <Menu.Menu position="right">
-        <Menu.Item as={NavLink} to="/register" name="Register" />
-        <Menu.Item as={NavLink} to="/login" name="Login" />
-      </Menu.Menu>
     </Container>
   </Menu>
 );
