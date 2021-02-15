@@ -20,22 +20,27 @@ export default class App extends React.Component {
   }
 
   updateAccountData() {
-    fetch(`http://${window.location.hostname}:5000/api/accounts`)
+    fetch(
+      `${window.location.protocol}://${window.location.hostname}:5000/api/accounts`
+    )
       .then((response) => response.json())
       .then((data) => this.setState({ accounts: data }));
   }
 
   onAddNewAccount(name, incBehavior) {
-    fetch(`http://${window.location.hostname}:5000/api/accounts`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        name: name,
-        increaseBalanceOn: incBehavior,
-      }),
-    })
+    fetch(
+      `${window.location.protocol}://${window.location.hostname}:5000/api/accounts`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          name: name,
+          increaseBalanceOn: incBehavior,
+        }),
+      }
+    )
       .then(this.updateAccountData)
       .catch((error) => console.log(error));
   }

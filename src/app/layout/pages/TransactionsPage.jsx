@@ -40,20 +40,23 @@ export class TransactionsPage extends React.Component {
       (account) => account.id === debits
     ).name;
 
-    fetch(`http://${window.location.hostname}:5000/api/transactions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        fromAccount: creditAccountName,
-        toAccount: debitAccountName,
-        amount: amount,
-        currency: "SEK",
-        date: date.toISOString(),
-        description: description,
-      }),
-    })
+    fetch(
+      `${window.location.protocol}://${window.location.hostname}:5000/api/transactions`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          fromAccount: creditAccountName,
+          toAccount: debitAccountName,
+          amount: amount,
+          currency: "SEK",
+          date: date.toISOString(),
+          description: description,
+        }),
+      }
+    )
       .then(() => this._updateTransactionData())
       .then(this.props.updateAccountData)
       .then(() => this.closeAddTransactionModal())
@@ -84,7 +87,9 @@ export class TransactionsPage extends React.Component {
   }
 
   _updateTransactionData() {
-    fetch(`http://${window.location.hostname}:5000/api/transactions`)
+    fetch(
+      `${window.location.protocol}://${window.location.hostname}:5000/api/transactions`
+    )
       .then((response) => response.json())
       .then((data) => this.setState({ transactions: data }));
   }
