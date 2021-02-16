@@ -21,7 +21,7 @@ export default class App extends React.Component {
 
   updateAccountData() {
     fetch(
-      `${window.location.protocol}://${window.location.hostname}:5000/api/accounts`
+      `${window.location.protocol}//${window.location.hostname}:5000/api/accounts`
     )
       .then((response) => response.json())
       .then((data) => this.setState({ accounts: data }));
@@ -29,7 +29,7 @@ export default class App extends React.Component {
 
   onAddNewAccount(name, incBehavior) {
     fetch(
-      `${window.location.protocol}://${window.location.hostname}:5000/api/accounts`,
+      `${window.location.protocol}//${window.location.hostname}:5000/api/accounts`,
       {
         method: "POST",
         headers: {

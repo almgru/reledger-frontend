@@ -41,7 +41,7 @@ export class TransactionsPage extends React.Component {
     ).name;
 
     fetch(
-      `${window.location.protocol}://${window.location.hostname}:5000/api/transactions`,
+      `${window.location.protocol}//${window.location.hostname}:5000/api/transactions`,
       {
         method: "POST",
         headers: {
@@ -88,7 +88,7 @@ export class TransactionsPage extends React.Component {
 
   _updateTransactionData() {
     fetch(
-      `${window.location.protocol}://${window.location.hostname}:5000/api/transactions`
+      `${window.location.protocol}//${window.location.hostname}:5000/api/transactions`
     )
       .then((response) => response.json())
       .then((data) => this.setState({ transactions: data }));
