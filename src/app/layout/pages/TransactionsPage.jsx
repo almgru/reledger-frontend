@@ -46,8 +46,8 @@ export class TransactionsPage extends React.Component {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        fromAccount: creditAccountName,
-        toAccount: debitAccountName,
+        creditAccount: creditAccountName,
+        debitAccount: debitAccountName,
         amount: amount,
         currency: "SEK",
         date: date.toISOString(),
