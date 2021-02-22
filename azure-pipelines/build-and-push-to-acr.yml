@@ -1,0 +1,52 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+# Trigger only on pushed tags
+trigger:
+  tags:
+    include:
+      - '*'
+  branches:
+    exclude:
+      - '*'
+
+# Do not trigger on pull requests
+pr:
+  branches:
+    exclude:
+      - '*'
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '8f9f213a-c503-4c8c-b657-bfe7764019e9'
+  imageRepository: 'reledger-frontend'
+  containerRegistry: 'almgruacr.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  # Build.SourceBranchName contains the git tag name when the trigger was a pushed git tag
+  tag: '$(Build.SourceBranchName)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-20.04'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
