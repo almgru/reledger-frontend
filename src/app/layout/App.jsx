@@ -20,13 +20,13 @@ export default class App extends React.Component {
   }
 
   updateAccountData() {
-    fetch(`https://reledger-api-demo.azurewebsites.net/api/accounts`)
+    fetch(`http://localhost:5000/api/accounts`)
       .then((response) => response.json())
       .then((data) => this.setState({ accounts: data }));
   }
 
   onAddNewAccount(name, incBehavior) {
-    fetch(`https://reledger-api-demo.azurewebsites.net/api/accounts`, {
+    fetch(`http://localhost:5000/api/accounts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",

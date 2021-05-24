@@ -40,7 +40,7 @@ export class TransactionsPage extends React.Component {
       (account) => account.id === debits
     ).name;
 
-    fetch(`https://reledger-api-demo.azurewebsites.net/api/transactions`, {
+    fetch(`http://localhost:5000/api/transactions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -84,7 +84,7 @@ export class TransactionsPage extends React.Component {
   }
 
   _updateTransactionData() {
-    fetch(`https://reledger-api-demo.azurewebsites.net/api/transactions`)
+    fetch(`http://localhost:5000/api/transactions`)
       .then((response) => response.json())
       .then((data) => this.setState({ transactions: data }));
   }
